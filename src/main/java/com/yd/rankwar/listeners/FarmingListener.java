@@ -32,9 +32,7 @@ public class FarmingListener implements Listener {
         this.configUtil = configUtil;
     }
 
-    // ----------------------------------------------------------------------
-    // [A] 게임 시작 시, 영역 내 모든 상자에 '즉시' 아이템 1개씩 넣기
-    // ----------------------------------------------------------------------
+    // 영역 내 아이템 넣기 로직
     public void populateChestsInRegion() {
         if (!regionManager.isRegionSet()) {
             Bukkit.getLogger().warning("[파밍시스템] 영역이 설정되지 않았습니다.");
@@ -82,10 +80,6 @@ public class FarmingListener implements Listener {
         Bukkit.getLogger().info("[파밍시스템] " + chestCount + " 개의 상자가 적용되었습니다.");
     }
 
-    // ----------------------------------------------------------------------
-    // [B] 1) '파밍 아이템 설정' GUI를 닫을 때 → config 저장
-    //     2) 상자를 닫을 때 → 아이템을 전부 가져가 비었으면 5분 뒤 새 아이템 추가
-    // ----------------------------------------------------------------------
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         // 1) '파밍 아이템 설정' GUI를 닫았는지 확인
