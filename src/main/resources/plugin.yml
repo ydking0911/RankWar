@@ -1,0 +1,24 @@
+name: RankWar
+version: '${project.version}'
+main: com.yd.rankwar.RankWar
+api-version: '1.20'
+commands:
+  등급전쟁:
+    description: Start the class war game
+  운영자:
+    description: Toggle admin mode
+  참가자:
+    description: Set participant mode
+  관리자아이템:
+    description: Open admin items GUI
+  등급설정:
+    description: Open rank settings GUI
+  체력상점:
+    description: 체력상점 관련 설정 명령어
+  무기상점:
+    description: 무기상점 관련 설정 명령어
+  마나상점:
+    description: 마나상점 관련 설정 명령어
+  등급교환:
+    description: Rank exchange GUI
+  파밍설정:
