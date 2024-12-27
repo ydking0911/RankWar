@@ -54,9 +54,7 @@ public class RankManager {
             admins.add(p.getUniqueId());
             participants.remove(p.getUniqueId());
             playerRanks.remove(p.getUniqueId());
-            p.setDisplayName(ChatColor.GRAY + "[Admin]" + p.getName());
             removeFromAllTeams(p);
-            p.setPlayerListName(ChatColor.WHITE + p.getName());
         } else {
             admins.remove(p.getUniqueId());
             participants.add(p.getUniqueId());

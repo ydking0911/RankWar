@@ -1,6 +1,7 @@
 package com.yd.rankwar.utils;
 
 import com.yd.rankwar.RankWar;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -29,12 +30,9 @@ public class ConfigUtil {
     }
 
     public void saveFarmingItems(List<ItemStack> items) {
-        config.set("farmingItems", items);
+        config.set("farmingItems", items); // Bukkit이 YAML 형식으로 자동 직렬화
         saveConfig();
-    }
-
-    public List<ItemStack> loadFarmingItems() {
-        return (List<ItemStack>) config.getList("farmingItems", new ArrayList<>());
+        Bukkit.getLogger().info("[파밍시스템] 파밍 아이템이 YAML 형식으로 저장되었습니다.");
     }
 
     public void saveConfig() {
@@ -44,4 +42,20 @@ public class ConfigUtil {
             e.printStackTrace();
         }
     }
+
+    public List<ItemStack> loadFarmingItems() {
+        List<?> rawItems = config.getList("farmingItems", new ArrayList<>()); // YAML 데이터를 가져오기
+        List<ItemStack> farmingItems = new ArrayList<>();
+
+        for (Object obj : rawItems) {
+            if (obj instanceof ItemStack) {
+                farmingItems.add((ItemStack) obj); // ItemStack으로 캐스팅
+            } else {
+                Bukkit.getLogger().warning("[파밍시스템] YAML 데이터 변환 실패: " + obj);
+            }
+        }
+        return farmingItems;
+    }
+
+
 }

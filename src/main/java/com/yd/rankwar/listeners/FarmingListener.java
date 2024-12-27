@@ -44,8 +44,6 @@ public class FarmingListener implements Listener {
             return;
         }
 
-        Bukkit.getLogger().info("[파밍시스템] populateChestsInRegion 메서드 실행. 영역 내 상자를 채웁니다.");
-
         World world = regionManager.getPos1().getWorld();
         int minX = regionManager.getMinX();
         int maxX = regionManager.getMaxX();
@@ -68,10 +66,7 @@ public class FarmingListener implements Listener {
                         if (chest.getInventory().isEmpty()) {
                             ItemStack randomItem = items.get(random.nextInt(items.size()));
                             chest.getInventory().addItem(randomItem);
-                            chest.update();
-
                             chestCount++;
-                            Bukkit.getLogger().info("[파밍시스템] 상자에 아이템 추가: " + chest.getLocation());
                         }
                     }
                 }
@@ -103,8 +98,6 @@ public class FarmingListener implements Listener {
         if (event.getInventory().getHolder() instanceof Chest) {
             Chest chest = (Chest) event.getInventory().getHolder();
 
-            Bukkit.getLogger().info("[파밍시스템] 상자 닫힘 이벤트 감지. 위치: " + chest.getLocation());
-
             // 게임 상태 및 영역 내 상자인지 확인
             if (!plugin.getGameManager().isGameStarted() ||
                     !regionManager.isRegionSet() ||
@@ -123,7 +116,6 @@ public class FarmingListener implements Listener {
 
             // 상자가 비어 있고, 스케줄이 실행되지 않은 경우에만 실행
             if (isEmpty && scheduledChests.add(chest)) {
-                Bukkit.getLogger().info("[파밍시스템] 상자가 비어 있습니다. 5분 타이머 시작: " + chest.getLocation());
                 new BukkitRunnable() {
                     @Override
                     public void run() {
@@ -136,15 +128,11 @@ public class FarmingListener implements Listener {
                         ItemStack randomItem = items.get(new Random().nextInt(items.size()));
 
                         chest.getInventory().addItem(randomItem);
-                        chest.update();
 
                         // 작업 완료 후 추적에서 제거
                         scheduledChests.remove(chest);
-                        Bukkit.getLogger().info("[파밍시스템] 아이템이 상자에 추가되었습니다: " + chest.getLocation());
                     }
                 }.runTaskLater(plugin, 6000L); // 5분 후
-            } else {
-                Bukkit.getLogger().info("[파밍시스템] 이미 스케줄러가 실행 중인 상자입니다: " + chest.getLocation());
             }
         }
     }
