@@ -31,9 +31,7 @@ public class PlayerInteractListener implements Listener {
         Player p = e.getPlayer();
         if(p.isSneaking()) {
             e.setCancelled(true);
-            // 웅크린 상태에서 손바꾸기 -> /등급교환 명령어 실행
             p.performCommand("등급교환");
-            // 이벤트 취소해서 손바꾸기 동작 막을 수도 있음. 필요하면 e.setCancelled(true);
         }
     }
 

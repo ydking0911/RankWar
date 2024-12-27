@@ -88,9 +88,7 @@ public class ShopManager {
         saveShopToConfig(shopType, list);
     }
 
-    /**
-     * shopConfigGUI에서 특정 슬롯 클릭 시 해당 슬롯의 아이템 제거 용도
-     */
+
     public void removeItemByIndex(String shopType, int index) {
         if (shops.containsKey(shopType)) {
             List<ItemInfo> list = shops.get(shopType);

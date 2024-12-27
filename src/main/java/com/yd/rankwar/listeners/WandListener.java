@@ -29,7 +29,7 @@ public class WandListener implements Listener {
             return;
         }
 
-        // 블록 클릭(좌클릭, 우클릭)
+        // 블록 클릭 (좌클릭, 우클릭)
         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
             // pos1 설정
             Location loc = event.getClickedBlock().getLocation();
@@ -44,7 +44,7 @@ public class WandListener implements Listener {
             regionManager.setPos2(loc);
             player.sendMessage(ChatColor.GREEN + "[pos2] "
                     + ChatColor.YELLOW + locToString(loc));
-            event.setCancelled(true); // 우클릭 동작(예: 문 열기) 방지
+            event.setCancelled(true); // 우클릭 동작 방지
         }
     }
 

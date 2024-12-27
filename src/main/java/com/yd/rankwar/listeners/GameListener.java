@@ -166,7 +166,7 @@ public class GameListener implements Listener {
                 plugin.getLogger().warning("Invalid UUID format in attacker metadata: " + uuidStr);
             }
         } else {
-            // 영어 메시지 처리: "was shot by", "was killed by", "was burnt to a crisp whilst fighting", "was skewered by", "was engulfed by" 등
+            // 영어 메시지 처리
             if (deathMessage.contains("was shot by") ||
                     deathMessage.contains("was killed by") ||
                     deathMessage.contains("was burnt to a crisp whilst fighting") ||

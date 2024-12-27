@@ -41,8 +41,7 @@ public class RankManager {
         objective = globalScoreboard.registerNewObjective("classwar", "dummy", ChatColor.GOLD + "등급전쟁");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        // 글로벌 Scoreboard에 공통 정보 표시 (예: 전체 남은 인원 수)
-        // 이제 개인별 정보(포인트, 이자) 표시를 여기서 하지 않음.
+        // 글로벌 Scoreboard에 공통 정보 표시
         objective.getScore(ChatColor.YELLOW + "남은 인원 :").setScore(1);
     }
 
@@ -159,10 +158,7 @@ public class RankManager {
         playerRanks.clear();
     }
 
-    /**
-     * 이제 개인별로 Sidebar는 사용하지 않고,
-     * 개인별 포인트, 이자, 남은 인원 수는 탭 목록 Footer로 표시.
-     */
+
     public void updatePersonalInfo(Player p) {
         if (pointManager == null) return;
 
@@ -177,10 +173,7 @@ public class RankManager {
         p.setPlayerListFooter(footer);
     }
 
-    /**
-     * 전역 Scoreboard는 남은 인원 수 등의 글로벌 정보만 표시할 수 있음.
-     * 필요하다면 startGlobalUpdateTask 같은 것을 돌려 전체 인원수만 업데이트
-     */
+
     public void updateGlobalInfo() {
         int alive = 0;
         if (pointManager != null) {
